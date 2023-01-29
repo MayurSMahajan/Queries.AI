@@ -29,13 +29,13 @@ class AppTheme {
   // *****************
   static final TextStyle _lightHeadingText = TextStyle(
       color: _lightTextColorPrimary,
-      fontFamily: GoogleFonts.lobster().fontFamily,
+      fontFamily: GoogleFonts.pacifico().fontFamily,
       fontSize: 20,
       fontWeight: FontWeight.bold);
 
   static final TextStyle _lightBodyText = TextStyle(
       color: _lightTextColorPrimary,
-      fontFamily: GoogleFonts.inter().fontFamily,
+      fontFamily: GoogleFonts.quicksand().fontFamily,
       fontWeight: FontWeight.bold,
       height: 1.35,
       fontSize: 16);
