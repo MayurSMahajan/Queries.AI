@@ -6,8 +6,8 @@ import '../../../core/services/text_to_speech_services.dart';
 part 'text_to_speech_state.dart';
 
 class TextToSpeechCubit extends Cubit<TextToSpeechState> {
-  final ttsService = TestToSwitchServices();
-  TextToSpeechCubit() : super(TextToSpeechInitial());
+  final TestToSwitchServices ttsService;
+  TextToSpeechCubit({required this.ttsService}) : super(TextToSpeechInitial());
 
   void startPlaying({required String textToRead}) async {
     emit(TextToSpeechPlaying());

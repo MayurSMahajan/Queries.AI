@@ -4,6 +4,8 @@ import 'package:chat_app/2_application/pages/home/widgets/chat_message_controls.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../injection.dart';
+
 class ChatMessageWrapper extends StatelessWidget {
   final Message message;
   const ChatMessageWrapper({super.key, required this.message});
@@ -11,7 +13,7 @@ class ChatMessageWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TextToSpeechCubit(),
+      create: (context) => sl<TextToSpeechCubit>(),
       child: ChatMessage(message: message),
     );
   }
