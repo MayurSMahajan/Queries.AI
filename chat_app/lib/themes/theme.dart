@@ -81,6 +81,7 @@ class AppTheme {
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.all(_accentColor),
         overlayColor: MaterialStateProperty.all(_accentColor),
+        trackColor: MaterialStateProperty.all(_appbarColorDark),
       ),
       textTheme: _lightTextTheme);
 
@@ -102,6 +103,7 @@ class AppTheme {
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.all(_accentColor),
         overlayColor: MaterialStateProperty.all(_accentColor),
+        trackColor: MaterialStateProperty.all(_appbarColorLight),
       ),
       textTheme: _darkTextTheme);
 }
