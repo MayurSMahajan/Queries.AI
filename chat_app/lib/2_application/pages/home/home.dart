@@ -37,20 +37,22 @@ class HomeScreen extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter),
           ),
-          child: SafeArea(child: BlocBuilder<MessagesBloc, MessagesState>(
-            builder: (context, state) {
-              if (state is MessagesStateLoaded) {
-                return MessagesListView(
-                  messages: state.messages,
-                  isLoading: state.messages.length,
-                );
-              }
-              if (state is MessagesStateError) {
-                return ErrorMessage(message: state.errorMessage);
-              }
-              return const ScreenLoading();
-            },
-          )),
+          child: SafeArea(
+            child: BlocBuilder<MessagesBloc, MessagesState>(
+              builder: (context, state) {
+                if (state is MessagesStateLoaded) {
+                  return MessagesListView(
+                    messages: state.messages,
+                    isLoading: state.messages.length,
+                  );
+                }
+                if (state is MessagesStateError) {
+                  return ErrorMessage(message: state.errorMessage);
+                }
+                return const ScreenLoading();
+              },
+            ),
+          ),
         ));
   }
 }

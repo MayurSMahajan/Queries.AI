@@ -17,7 +17,7 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
   final MessageUseCases messageUseCases;
   MessagesBloc({required this.messageUseCases}) : super(MessagesInitial()) {
     on<MessageLoadingEvent>((event, emit) async {
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(milliseconds: 50));
       emit(const MessagesStateLoaded(messages: <Message>[]));
     });
 
