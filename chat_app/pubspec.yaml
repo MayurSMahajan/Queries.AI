@@ -39,6 +39,7 @@ dependencies:
   dartz: ^0.10.1
   http: ^0.13.5
   flutter_tts: ^3.6.3
+  speech_to_text: ^6.1.1
   get_it: ^7.2.0
   google_fonts: ^4.0.0
   cupertino_icons: ^1.0.2

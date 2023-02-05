@@ -1,7 +1,12 @@
 import 'package:chat_app/2_application/pages/home/bloc/messages_bloc.dart';
 import 'package:chat_app/1_domain/entity/message.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+
+import 'package:flutter/material.dart';
+
+const permissionDenied = "Please give permission for using Microphone";
 
 class UserInputField extends StatefulWidget {
   const UserInputField({
@@ -15,6 +20,38 @@ class UserInputField extends StatefulWidget {
 class _UserInputFieldState extends State<UserInputField> {
   final TextEditingController _textEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  late stt.SpeechToText speech;
+  bool available = false;
+  bool isListening = false;
+
+  @override
+  void initState() {
+    speech = stt.SpeechToText();
+    initializeSpeech();
+    super.initState();
+  }
+
+  initializeSpeech() async {
+    available = await speech.initialize(
+        onStatus: speechStatusListener, onError: errorListener);
+  }
+
+  speechStatusListener(String text) {
+    debugPrint(text);
+    if (text == 'done') {
+      setState(() {
+        isListening = false;
+      });
+    }
+  }
+
+  errorListener(error) {
+    debugPrint(error.errorMsg);
+  }
+
+  speechResultListener(SpeechRecognitionResult result) {
+    setState(() => _textEditingController.text = result.recognizedWords);
+  }
 
   String? textFieldValidator(String? value) {
     if (value == null || value.isEmpty) {
@@ -36,6 +73,19 @@ class _UserInputFieldState extends State<UserInputField> {
     }
   }
 
+  void _showSnackbar(BuildContext buildContext, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red,
+        padding: const EdgeInsets.all(8),
+        content: Text(
+          message,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final btnColor = Theme.of(context).colorScheme.secondary;
@@ -52,12 +102,30 @@ class _UserInputFieldState extends State<UserInputField> {
                 shape: BoxShape.circle,
               ),
               child: InkWell(
-                child: const Icon(
-                  Icons.mic,
-                  color: Colors.white,
-                ),
-                onTap: () {},
-              ),
+                  onTap: () {
+                    if (!isListening) {
+                      if (available) {
+                        speech.listen(onResult: speechResultListener);
+                      } else {
+                        setState(() {
+                          isListening = false;
+                        });
+                        _showSnackbar(context, permissionDenied);
+                      }
+                      setState(() {
+                        isListening = true;
+                      });
+                    } else {
+                      speech.stop();
+                      setState(() {
+                        isListening = false;
+                      });
+                    }
+                  },
+                  child: Icon(
+                    isListening ? Icons.stop : Icons.mic,
+                    color: Colors.white,
+                  )),
             ),
             const SizedBox(
               width: 8,
