@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:chat_app/0_data/models/message_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../exceptions/exceptions.dart';
 
@@ -18,7 +19,8 @@ class MessageRemoteDataSourceImpl implements MessageRemoteDataSource {
 
   @override
   Future<MessageModel> getMessageFromApi(String query) async {
-    final url = Uri.parse("https://li3txq.deta.dev/");
+    final urlLink = dotenv.env['SERVER_URL'];
+    final url = Uri.parse(urlLink!);
     const headers = {
       'content-type': 'application/json; charset=utf-8',
     };

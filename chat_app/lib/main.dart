@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:provider/provider.dart';
 import 'package:chat_app/2_application/themes/theme.dart';
@@ -9,6 +10,7 @@ import 'injection.dart' as dependency_injection;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dependency_injection.init();
+  await dotenv.load(fileName: ".env");
   runApp(ChangeNotifierProvider(
     create: (context) => ThemeService(),
     child: const MyApp(),
