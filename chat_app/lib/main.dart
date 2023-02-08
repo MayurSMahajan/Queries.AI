@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:chat_app/themes/theme.dart';
+import 'package:chat_app/2_application/themes/theme.dart';
 import '2_application/core/services/theme_services.dart';
 import '2_application/pages/home/home.dart';
 import 'injection.dart' as dependency_injection;
