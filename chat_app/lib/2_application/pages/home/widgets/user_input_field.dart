@@ -32,8 +32,12 @@ class _UserInputFieldState extends State<UserInputField> {
   }
 
   initializeSpeech() async {
-    available = await speech.initialize(
-        onStatus: speechStatusListener, onError: errorListener);
+    try {
+      available = await speech.initialize(
+          onStatus: speechStatusListener, onError: errorListener);
+    } catch (e) {
+      print(e);
+    }
   }
 
   speechStatusListener(String text) {
