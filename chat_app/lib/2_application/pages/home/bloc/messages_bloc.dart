@@ -27,20 +27,21 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
         emit(MessagesStateLoaded(
           messages: List.from(currentState.messages)..insert(0, event.message),
         ));
-        //mocking a network call.
+
         final failureOrAdvice =
             await messageUseCases.getMessage(event.message.text);
 
         failureOrAdvice.fold(
-            (failure) => emit(MessagesStateError(
-                errorMessage: _mapFailureToMessage(failure))), (message) {
+            (failure) => emit(
+                  MessagesStateError(
+                    errorMessage: _mapFailureToMessage(failure),
+                  ),
+                ), (message) {
           final cState = state as MessagesStateLoaded;
           emit(MessagesStateLoaded(
             messages: List.from(cState.messages)..insert(0, message),
           ));
         });
-
-        // emit(const MessagesStateError(errorMessage: "Some Error Occured"));
       }
     });
   }

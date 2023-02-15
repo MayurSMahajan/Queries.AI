@@ -27,10 +27,10 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.bodyText1;
-    final imagePath = message.sender == "User"
+    final imagePath = message.isUserMessage
         ? 'assets/images/user.jpg'
         : 'assets/images/panda.jpg';
-    final alignment = message.sender == "User"
+    final alignment = message.isUserMessage
         ? CrossAxisAlignment.center
         : CrossAxisAlignment.start;
     return Padding(

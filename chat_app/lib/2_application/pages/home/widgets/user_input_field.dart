@@ -67,7 +67,7 @@ class _UserInputFieldState extends State<UserInputField> {
     if (_formKey.currentState!.validate()) {
       String query = _textEditingController.text.trim();
       _textEditingController.clear();
-      Message newMessage = Message(sender: "User", text: query);
+      Message newMessage = Message(isUserMessage: true, text: query);
       BlocProvider.of<MessagesBloc>(context)
           .add(MessageRequestEvent(newMessage));
     }
