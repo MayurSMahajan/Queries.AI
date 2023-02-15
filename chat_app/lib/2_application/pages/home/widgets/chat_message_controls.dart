@@ -27,32 +27,7 @@ class ChatMessageControls extends StatelessWidget {
                 icon: const Icon(Icons.volume_up_rounded));
           },
         ),
-        // const SaveForLaterIcon(),
-        // ? const Icon(Icons.volume_off_rounded)
       ],
-    );
-  }
-}
-
-class SaveForLaterIcon extends StatefulWidget {
-  const SaveForLaterIcon({super.key});
-
-  @override
-  State<SaveForLaterIcon> createState() => _SaveForLaterIconState();
-}
-
-class _SaveForLaterIconState extends State<SaveForLaterIcon> {
-  bool isSaved = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => setState(() {
-        isSaved = !isSaved;
-      }),
-      icon: isSaved
-          ? const Icon(Icons.download_for_offline_outlined)
-          : const Icon(Icons.download_for_offline),
     );
   }
 }
