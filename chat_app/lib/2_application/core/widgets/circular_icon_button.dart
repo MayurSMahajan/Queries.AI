@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CircularIconButton extends StatelessWidget {
   final Color btnColor;
-  final Icon icon;
+  final Widget icon;
   final VoidCallback onTap;
 
   const CircularIconButton(
@@ -20,7 +20,12 @@ class CircularIconButton extends StatelessWidget {
         color: btnColor,
         shape: BoxShape.circle,
       ),
-      child: InkWell(onTap: onTap, child: icon),
+      child: Center(
+        child: InkWell(
+          onTap: onTap,
+          child: icon,
+        ),
+      ),
     );
   }
 }
