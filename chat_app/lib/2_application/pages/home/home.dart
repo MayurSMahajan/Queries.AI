@@ -27,7 +27,9 @@ class HomeScreen extends StatelessWidget {
     final gradientEndColor = Theme.of(context).colorScheme.onSurfaceVariant;
 
     return Scaffold(
-        appBar: const MyAppBar(),
+        appBar: const MyAppBar(
+          title: "Ask Anything",
+        ),
         drawer: const MyDrawer(),
         body: Container(
           decoration: BoxDecoration(
