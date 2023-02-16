@@ -1,10 +1,11 @@
 import 'package:chat_app/1_domain/entity/message.dart';
+import 'package:chat_app/2_application/core/utils/images_consts.dart';
 import 'package:chat_app/2_application/core/widgets/circular_icon_button.dart';
 import 'package:chat_app/2_application/pages/home/cubit/text_to_speech_cubit.dart';
 import 'package:chat_app/2_application/pages/home/widgets/chat_message_controls.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../injection.dart';
 
@@ -30,15 +31,13 @@ class ChatMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.bodyText1;
 
-    final imagePath = message.isUserMessage
-        ? 'assets/images/user.jpg'
-        : 'assets/images/panda.jpg';
+    final imagePath = message.isUserMessage ? userImage : pandaImage;
     final alignment = message.isUserMessage
         ? CrossAxisAlignment.center
         : CrossAxisAlignment.start;
 
     return InkWell(
-      onDoubleTap: () => showOptions(context),
+      onDoubleTap: () => showOptions(context, message),
       child: Padding(
         padding:
             const EdgeInsets.only(left: 8.0, top: 16, bottom: 16, right: 32),
@@ -62,7 +61,7 @@ class ChatMessage extends StatelessWidget {
     );
   }
 
-  Future<String?> showOptions(BuildContext context) {
+  Future<String?> showOptions(BuildContext context, Message message) {
     // final btnBackgroundColor = Theme.of(context).colorScheme.primary;
     final btnBackgroundColor = Colors.purple.shade100;
     final btnForegroundColor = Theme.of(context).colorScheme.secondary;
@@ -76,13 +75,15 @@ class ChatMessage extends StatelessWidget {
           children: <Widget>[
             CircularIconButton(
                 btnColor: btnBackgroundColor,
-                icon: Icon(
-                  Icons.add_card,
-                  color: btnForegroundColor,
-                  size: 35,
+                icon: const Image(
+                  width: 40,
+                  height: 40,
+                  image: AssetImage(cardIconImage),
                 ),
                 onTap: () {
                   debugPrint("flashcard");
+                  context.goNamed("create_flashcard",
+                      params: {'message': message.text});
                 }),
             CircularIconButton(
                 btnColor: btnBackgroundColor,
@@ -93,6 +94,7 @@ class ChatMessage extends StatelessWidget {
                 ),
                 onTap: () {
                   debugPrint("speak out loud");
+                  Navigator.pop(context, 'Speaker');
                 }),
             CircularIconButton(
                 btnColor: btnBackgroundColor,
@@ -103,6 +105,7 @@ class ChatMessage extends StatelessWidget {
                 ),
                 onTap: () {
                   debugPrint("download");
+                  Navigator.pop(context, 'download');
                 }),
           ],
         ),
@@ -110,5 +113,3 @@ class ChatMessage extends StatelessWidget {
     );
   }
 }
-
-//Navigator.pop(context, 'Speaker')

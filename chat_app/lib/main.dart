@@ -1,10 +1,10 @@
+import 'package:chat_app/2_application/routes/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:provider/provider.dart';
 import 'package:chat_app/2_application/themes/theme.dart';
 import '2_application/core/services/theme_services.dart';
-import '2_application/pages/home/home.dart';
 import 'injection.dart' as dependency_injection;
 
 void main() async {
@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeService>(builder: (context, themeService, child) {
-      return MaterialApp(
+      return MaterialApp.router(
         debugShowCheckedModeBanner: false,
         themeMode: themeService.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
-        home: const HomeScreenWrapper(),
+        routerConfig: router,
       );
     });
   }
