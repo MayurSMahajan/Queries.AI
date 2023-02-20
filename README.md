@@ -6,6 +6,7 @@ This is a flutter mobile app, that lets you ask questions, queries, jokes, poems
 - Chat with our AI Model and ask any questions, queries or doubts you have. Eg: Write a poem about rain drops. Or Who discovered America?
 - Use our Speech To Text feature to speak whats on your mind and let our AI solve it.
 - Use our Text to Speech to listen to AI's answers.
+- Beautiful UI with an engaging Dark Theme for all the geeks out there.
 
 ## Upcoming Features:
 
