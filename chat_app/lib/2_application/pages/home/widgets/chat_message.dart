@@ -82,6 +82,7 @@ class ChatMessage extends StatelessWidget {
                 ),
                 onTap: () {
                   debugPrint("flashcard");
+                  Navigator.pop(context, 'flashcard');
                   context.goNamed("create_flashcard",
                       params: {'message': message.text});
                 }),

@@ -138,6 +138,7 @@ class _UserInputFieldState extends State<UserInputField> {
               child: Form(
                 key: _formKey,
                 child: TextFormField(
+                  cursorColor: Theme.of(context).colorScheme.secondary,
                   controller: _textEditingController,
                   validator: (value) => textFieldValidator(value),
                   onFieldSubmitted: (value) => sendMessage(context),
