@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chat_app/1_domain/entity/message.dart';
 
+import '../../core/widgets/gradient_background_with_child.dart';
 import 'widgets/widgets.dart';
 import '../../../injection.dart';
 import 'bloc/messages_bloc.dart';
@@ -23,38 +24,27 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gradientStartColor = Theme.of(context).colorScheme.surfaceVariant;
-    final gradientEndColor = Theme.of(context).colorScheme.onSurfaceVariant;
-
     return Scaffold(
         appBar: const MyAppBar(
           title: "Ask Anything",
         ),
         drawer: const MyDrawer(),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [gradientStartColor, gradientEndColor],
-                stops: const [0.7, 0.9],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter),
-          ),
-          child: SafeArea(
-            child: BlocBuilder<MessagesBloc, MessagesState>(
-              builder: (context, state) {
-                if (state is MessagesStateLoaded) {
-                  return MessagesListView(
-                    messages: state.messages,
-                    isLoading: state.messages.length,
-                  );
-                }
-                if (state is MessagesStateError) {
-                  return ErrorMessage(message: state.errorMessage);
-                }
-                return const ScreenLoading();
-              },
-            ),
-          ),
+        body: SafeArea(
+          child: GradientBackgroundwithChild(
+              child: BlocBuilder<MessagesBloc, MessagesState>(
+            builder: (context, state) {
+              if (state is MessagesStateLoaded) {
+                return MessagesListView(
+                  messages: state.messages,
+                  isLoading: state.messages.length,
+                );
+              }
+              if (state is MessagesStateError) {
+                return ErrorMessage(message: state.errorMessage);
+              }
+              return const ScreenLoading();
+            },
+          )),
         ));
   }
 }
