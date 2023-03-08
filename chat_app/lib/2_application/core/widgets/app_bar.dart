@@ -1,7 +1,6 @@
+import 'package:chat_app/2_application/core/services/theme_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../services/theme_services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -19,14 +18,14 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Row(
           children: [
-            const Icon(Icons.light_mode),
+            const Icon(Icons.dark_mode),
             Switch(
-                value: Provider.of<ThemeService>(context).isDarkModeOn,
+                value: BlocProvider.of<ThemeCubit>(context).state,
                 onChanged: (_) {
-                  Provider.of<ThemeService>(context, listen: false)
+                  BlocProvider.of<ThemeCubit>(context, listen: false)
                       .toggleTheme();
                 }),
-            const Icon(Icons.dark_mode),
+            const Icon(Icons.light_mode),
             const SizedBox(width: 12),
           ],
         )
