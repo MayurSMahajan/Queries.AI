@@ -1,13 +1,14 @@
 import 'package:chat_app/1_domain/entity/message.dart';
 import 'package:chat_app/2_application/core/utils/images_consts.dart';
 import 'package:chat_app/2_application/core/widgets/circular_icon_button.dart';
-import 'package:chat_app/2_application/pages/home/cubit/text_to_speech_cubit.dart';
+import 'package:chat_app/2_application/pages/home/bloc/text_to_speech_cubit.dart';
 import 'package:chat_app/2_application/pages/home/widgets/chat_message_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../injection.dart';
+import '../../../themes/color_consts.dart';
 
 class ChatMessageWrapper extends StatelessWidget {
   final Message message;
@@ -63,8 +64,7 @@ class ChatMessage extends StatelessWidget {
 
   Future<String?> showOptions(BuildContext context, Message message) {
     // final btnBackgroundColor = Theme.of(context).colorScheme.primary;
-    final btnBackgroundColor = Colors.purple.shade100;
-    final btnForegroundColor = Theme.of(context).colorScheme.secondary;
+
     return showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -88,7 +88,7 @@ class ChatMessage extends StatelessWidget {
                 }),
             CircularIconButton(
                 btnColor: btnBackgroundColor,
-                icon: Icon(
+                icon: const Icon(
                   Icons.volume_up,
                   color: btnForegroundColor,
                   size: 35,
@@ -99,7 +99,7 @@ class ChatMessage extends StatelessWidget {
                 }),
             CircularIconButton(
                 btnColor: btnBackgroundColor,
-                icon: Icon(
+                icon: const Icon(
                   Icons.download,
                   color: btnForegroundColor,
                   size: 35,
