@@ -4,7 +4,7 @@ import 'package:chat_app/1_domain/repositories/message_repo.dart';
 import 'package:chat_app/1_domain/use_cases/message_use_case.dart';
 import 'package:chat_app/2_application/core/services/text_to_speech_services.dart';
 import 'package:chat_app/2_application/pages/home/bloc/messages_bloc.dart';
-import 'package:chat_app/2_application/pages/home/cubit/text_to_speech_cubit.dart';
+import 'package:chat_app/2_application/pages/home/bloc/text_to_speech_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 

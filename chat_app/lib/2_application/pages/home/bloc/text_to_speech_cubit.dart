@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/text_to_speech_services.dart';
 
-part 'text_to_speech_state.dart';
-
 class TextToSpeechCubit extends Cubit<TextToSpeechState> {
   final TestToSwitchServices ttsService;
   TextToSpeechCubit({required this.ttsService}) : super(TextToSpeechInitial());
@@ -25,3 +23,16 @@ class TextToSpeechCubit extends Cubit<TextToSpeechState> {
     emit(TextToSpeechPlaying());
   }
 }
+
+abstract class TextToSpeechState extends Equatable {
+  const TextToSpeechState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class TextToSpeechInitial extends TextToSpeechState {}
+
+class TextToSpeechPlaying extends TextToSpeechState {}
+
+class TextToSpeechStopped extends TextToSpeechState {}

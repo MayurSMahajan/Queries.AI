@@ -1,4 +1,4 @@
-import 'package:chat_app/2_application/pages/home/cubit/text_to_speech_cubit.dart';
+import 'package:chat_app/2_application/pages/home/bloc/text_to_speech_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

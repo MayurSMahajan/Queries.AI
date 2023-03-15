@@ -6,9 +6,6 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../1_domain/failures/failures.dart';
 
-part 'messages_event.dart';
-part 'messages_state.dart';
-
 const generalFailureMessage = "Oops! Something gone wrong. Please try again!";
 const serverFailureMessage = "Oops! API Error. Please try again!";
 const cacheFailureMessage = "Oops! Chache Failed. Please try again!";
@@ -56,4 +53,47 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
         return generalFailureMessage;
     }
   }
+}
+
+abstract class MessagesEvent extends Equatable {
+  const MessagesEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class MessageLoadingEvent extends MessagesEvent {}
+
+class MessageRequestEvent extends MessagesEvent {
+  final Message message;
+  const MessageRequestEvent(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
+@immutable
+abstract class MessagesState extends Equatable {
+  const MessagesState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class MessagesInitial extends MessagesState {}
+
+class MessagesStateLoaded extends MessagesState {
+  final List<Message> messages;
+  const MessagesStateLoaded({required this.messages});
+
+  @override
+  List<Object> get props => [messages];
+}
+
+class MessagesStateError extends MessagesState {
+  final String errorMessage;
+  const MessagesStateError({required this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
 }
