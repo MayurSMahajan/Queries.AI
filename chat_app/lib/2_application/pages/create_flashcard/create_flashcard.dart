@@ -19,7 +19,6 @@ class CreateFlashcard extends StatelessWidget {
         child: Center(
             child: Flashcard(
           cardNum: 1,
-          color: Theme.of(context).colorScheme.secondary,
           phrase: kCreateHook,
           explanation: message ?? kCreateInformation,
         )),

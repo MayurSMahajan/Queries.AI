@@ -13,6 +13,13 @@ final GoRouter router = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
+          path: 'home',
+          name: 'home',
+          builder: (BuildContext context, GoRouterState state) {
+            return const HomeScreenWrapper();
+          },
+        ),
+        GoRoute(
           path: 'create_flashcard/:message',
           name: 'create_flashcard',
           builder: (BuildContext context, GoRouterState state) {
