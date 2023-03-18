@@ -35,9 +35,11 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
                   ),
                 ), (message) {
           final cState = state as MessagesStateLoaded;
-          emit(MessagesStateLoaded(
-            messages: List.from(cState.messages)..insert(0, message),
-          ));
+          emit(
+            MessagesStateLoaded(
+              messages: List.from(cState.messages)..insert(0, message),
+            ),
+          );
         });
       }
     });
