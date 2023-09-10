@@ -8,12 +8,6 @@ This is a flutter mobile app, that lets you ask questions, queries, jokes, poems
 - Use our Text to Speech to listen to AI's answers.
 - Beautiful UI with an engaging Dark Theme for all the geeks out there.
 
-## Upcoming Features:
-
-- Create Flashcards from your chat messages to remember important information.
-- Review Flashcards through our Spaced Repetition Algorithm to never forget your learnings.
-- Support Automatic Conversation Mode
-
 ## Preview: 
 
 <img align="center" width="600" alt="image" src="https://github.com/MayurSMahajan/Queries.AI/blob/main/chat_app/assets/images/illustration.png" >
